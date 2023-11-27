@@ -1,18 +1,33 @@
-import React from 'react'
 import { BrowserRouter,Routes, Route,Link } from "react-router-dom"
 import Producto from './pages/Producto'
 import MateriaPrima from './pages/MateriaPrima'
+import Navbar from './components/Navbar'
+import Inicio from "./pages/Inicio"
+import '../public/assets/css/templatemo-574-mexant.css'
+import "../public/assets/css/conocenos.css"
+import "../public/assets/css/login.css"
+import Conocenos from "./pages/Conocenos"
+import Login from "./pages/Login"
+import Signup from "./pages/Signup"
+
 
 const App = () => {
   return (
     <>
-    <h1>React App</h1>
     <div className="container-fluid">
       <div className="row">
     <BrowserRouter>
-    
-    <Navigation />
+    <Navbar />
+    {/* <Navigation /> */}
      <Routes>
+     <Route path="/inicio" element={<Inicio/>} />
+     <Route path="/conocenos" element={<Conocenos/>} />
+     <Route path="/login" element={<Login/>} />
+     <Route path="/signup" element={<Signup/>} />
+     <Route path="/menu" element={<Signup/>} />
+
+
+
       <Route path="/producto" element={<Producto/>} />
       <Route path="/materiaprima" element={<MateriaPrima/>} />
       </Routes> 
