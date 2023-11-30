@@ -38,14 +38,14 @@ function Inicio() {
       <div className="row">
         <div className="col-lg-6">
           <div className="service-item"  style={{ background: 'radial-gradient(#525c66, #212741)' }}>
-            <i className="fas fa-paint-brush"></i>
+            <img src="../../../assets/images/diseno-exclusivo.jpeg" alt="" className="img-fluid " style={{height:"15rem", width: "auto"}}/>
                         <h4 style={{ color: 'white' }}>Diseños Exclusivos          </h4>
             <p style={{ color: 'white' }}>Realizamos los mejores diseños, nuestros productos son unicos y exclusivos, todos nuestros muebles estan hechos en maderas selectas con mano de obra calificada.</p>
           </div>
         </div>
         <div className="col-lg-6">
           <div className="service-item"  style={{ background: 'radial-gradient(#525c66, #212741)' }}>
-            <i className="fa fa-users" aria-hidden="true"></i>
+          <img src="../../../assets/images/15anos.png" alt="" className="img-fluid mx-auto" style={{height:"17rem", width: "auto"}}/>
             <h4 style={{ color: 'white' }}>Experiencia</h4>
             <p style={{ color: 'white' }}>Mas de 15 años nos respaldan diseñando y creando los mejores muebles a nivel local y nacional.
   
@@ -54,7 +54,7 @@ function Inicio() {
         </div>
         <div className="col-lg-6">
           <div className="service-item"  style={{ background: 'radial-gradient(#525c66, #212741)' }}>
-            <i className="fa-solid fa-medal"></i>
+          <img src="../../../assets/images/calidad.jpg" alt="" className="img-fluid " style={{height:"15rem", width: "auto"}}/>
                         <h4 style={{ color: 'white' }}>Estándares de calidad
             </h4>
             <p style={{ color: 'white' }}>Los muebles son fabricados por manos expertas, nuestros maestros carpinteros cuentan con las instalaciones necesarias.
@@ -63,7 +63,7 @@ function Inicio() {
         </div>
         <div className="col-lg-6">
           <div className="service-item"  style={{ background: 'radial-gradient(#525c66, #212741)' }}>
-            <i className="fa fa-cogs" aria-hidden="true"></i>
+          <img src="../../../assets/images/servicios.jpg" alt="" className="img-fluid " style={{height:"15rem", width: "auto"}}/>
             <h4 style={{ color: 'white' }}>Variedad de servicios
             </h4>
             <p style={{ color: 'white' }}>
@@ -148,7 +148,7 @@ function Inicio() {
       </div>
     </div>
   </section>
-  
+  {/* }
   <section className="partners">
     <div className="container">
       <div className="row justify-content-center">
@@ -171,6 +171,7 @@ function Inicio() {
       </div>
     </div>
   </section>
+                */}
   <footer>
     <div className="container">
       <div className="row">
