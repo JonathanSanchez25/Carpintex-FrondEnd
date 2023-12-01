@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom"
+import { FaSignOutAlt,FaUser,FaShoppingCart  } from "react-icons/fa";
 
 function Navbar() {
+  // function goShopping() {
+  //   console.log('Implement your goShopping function logic here');
+  //   // Implement your goShopping function logic here
+  // }
+
+    function exit(){
+        localStorage.clear();
+        window.location.href = '/login';
+    }
   return (
     <>
     <header className="header-area header-sticky">
@@ -12,21 +22,32 @@ function Navbar() {
                         <img src="../../public/assets/images/logo.png" alt=""></img>
                     </a>
                     <ul className="nav">
-                        <li className="scroll-to-section"><Link className="nav-link" to="/inicio">Inicio</Link></li>
-                        <li className="scroll-to-section"><Link className="nav-link" to="/menu">Menu</Link></li>
-                        <li className="scroll-to-section"><Link className="nav-link" to="/conocenos">Conocenos</Link></li>
-                        <li className="scroll-to-section"><Link className="nav-link" to="/login">Login</Link></li>
+                    <li className="scroll-to-section"><Link className="nav-link" to="/inicio">Inicio</Link></li>
+<li className="scroll-to-section"><Link className="nav-link" to="/productos">Productos</Link></li>
+<li className="scroll-to-section"><Link className="nav-link" to="/conocenos">Conocenos</Link></li>
 
-                        {/* <li *ngIf="pedidos" className="scroll-to-section"><a [routerLink]="['/pedidos']">Pedidos</a></li> */}
+{localStorage.getItem('rol') ? (
+  <>
+    <li className="scroll-to-section">
+      <Link className="nav-link" to="/pedidos">Pedidos</Link>
+    </li>
+    <li className="scroll-to-section" style={{ cursor: 'pointer' }}>
+          <Link className="nav-link" to="/carrito"><FaShoppingCart /></Link>
+      </li>
 
-                        {/* <li *ngIf="shoppingCart"  >
-                            <a>
-                                    <span id="txtPopupCantidad" className='text-white badge rounded-pill badge-notification bg-danger' data-toggle="popover" [attr.data-content]="popoverContent" data-placement="bottom" title=" Cesta ">{{counter}}</span>
-                                    <i className="fas fa-shopping-cart color-white" (click)="goShopping()" style="cursor: pointer;"></i>
-                                </a>
-                            </li>
-                       <div *ngIf="login"> <li ><a [routerLink]="['/login']"><i className="fa fa-user-circle" ></i></a></li> </div>
-                       <div *ngIf="logout" style="cursor: pointer;"> <li ><a (click)="exit()"><i className="fa fa-sign-out" ></i></a></li> </div> */}
+    <li className="scroll-to-section" style={{ cursor: 'pointer' }}>
+      <Link className="nav-link" ><FaSignOutAlt onClick={exit} /></Link>
+    </li>
+
+  </>
+):(
+  <>
+    <li className="scroll-to-section"><Link className="nav-link" to="/login"><FaUser size="1em" /></Link></li>
+
+  </>
+)}
+
+                        {/*  */}
                     </ul>       
                     <a className='menu-trigger'>
                         <span>Menu</span>

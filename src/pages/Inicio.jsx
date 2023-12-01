@@ -1,3 +1,4 @@
+import { FaPaintBrush,FaUsers,FaMedal,FaCogs} from 'react-icons/fa';
 
 function Inicio() {
   return (
@@ -131,9 +132,9 @@ function Inicio() {
   onChange={() => this.form.click()}
 >
   <option selected>Escoge una opcion</option>
-  <option value="Financial Control">Cotizacion</option>
-  <option value="Yearly Profit">Sobrepedido</option>
-  <option value="Crypto Investment">Inventario</option>
+  <option defaultValue="Financial Control">Cotizacion</option>
+  <option defaultValue="Yearly Profit">Sobrepedido</option>
+  <option defaultValue="Crypto Investment">Inventario</option>
 </select>
               </fieldset>
               </div>
