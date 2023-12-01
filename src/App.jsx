@@ -9,6 +9,9 @@ import "../public/assets/css/login.css"
 import Conocenos from "./pages/Conocenos"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
+import Pedidos from "./pages/Pedidos"
+import Carrito from "./pages/Carrito"
+import Productos from "./pages/Productos"
 
 
 const App = () => {
@@ -20,14 +23,14 @@ const App = () => {
     <Navbar />
     {/* <Navigation /> */}
      <Routes>
+     <Route path="/" element={<Inicio/>} />
      <Route path="/inicio" element={<Inicio/>} />
      <Route path="/conocenos" element={<Conocenos/>} />
      <Route path="/login" element={<Login/>} />
      <Route path="/signup" element={<Signup/>} />
-     <Route path="/menu" element={<Signup/>} />
-
-
-
+     <Route path="/productos" element={<Productos/>} />
+     <Route path="/pedidos" element={<Pedidos/>} />
+     <Route path="/carrito" element={<Carrito/>} />
       <Route path="/producto" element={<Producto/>} />
       <Route path="/materiaprima" element={<MateriaPrima/>} />
       </Routes> 
