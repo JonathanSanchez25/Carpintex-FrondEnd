@@ -1,3 +1,4 @@
+import { FaPaintBrush,FaUsers,FaMedal,FaCogs} from 'react-icons/fa';
 
 function Inicio() {
   return (
@@ -38,15 +39,13 @@ function Inicio() {
       <div className="row">
         <div className="col-lg-6">
           <div className="service-item"  style={{ background: 'radial-gradient(#525c66, #212741)' }}>
-            <i className="fas fa-paint-brush"></i>
-                        <h4 style={{ color: 'white' }}>Diseños Exclusivos          </h4>
+                        <h4 style={{ color: 'white' }}>            <FaPaintBrush size="3em" />Diseños Exclusivos          </h4>
             <p style={{ color: 'white' }}>Realizamos los mejores diseños, nuestros productos son unicos y exclusivos, todos nuestros muebles estan hechos en maderas selectas con mano de obra calificada.</p>
           </div>
         </div>
         <div className="col-lg-6">
           <div className="service-item"  style={{ background: 'radial-gradient(#525c66, #212741)' }}>
-            <i className="fa fa-users" aria-hidden="true"></i>
-            <h4 style={{ color: 'white' }}>Experiencia</h4>
+            <h4 style={{ color: 'white' }}> <FaUsers size="3em" /> Experiencia</h4>
             <p style={{ color: 'white' }}>Mas de 15 años nos respaldan diseñando y creando los mejores muebles a nivel local y nacional.
   
             </p>
@@ -54,8 +53,7 @@ function Inicio() {
         </div>
         <div className="col-lg-6">
           <div className="service-item"  style={{ background: 'radial-gradient(#525c66, #212741)' }}>
-            <i className="fa-solid fa-medal"></i>
-                        <h4 style={{ color: 'white' }}>Estándares de calidad
+                        <h4 style={{ color: 'white' }}><FaMedal size="3em" />Estándares de calidad
             </h4>
             <p style={{ color: 'white' }}>Los muebles son fabricados por manos expertas, nuestros maestros carpinteros cuentan con las instalaciones necesarias.
             </p>
@@ -63,8 +61,7 @@ function Inicio() {
         </div>
         <div className="col-lg-6">
           <div className="service-item"  style={{ background: 'radial-gradient(#525c66, #212741)' }}>
-            <i className="fa fa-cogs" aria-hidden="true"></i>
-            <h4 style={{ color: 'white' }}>Variedad de servicios
+            <h4 style={{ color: 'white' }}><FaCogs size="3em" /> Variedad de servicios
             </h4>
             <p style={{ color: 'white' }}>
               Ofrecemos una variedad de servicios para satisfacer las necesidades de nuestros clientes, desde escaleras, puertas, sillas.
@@ -131,9 +128,9 @@ function Inicio() {
   onChange={() => this.form.click()}
 >
   <option selected>Escoge una opcion</option>
-  <option value="Financial Control">Cotizacion</option>
-  <option value="Yearly Profit">Sobrepedido</option>
-  <option value="Crypto Investment">Inventario</option>
+  <option defaultValue="Financial Control">Cotizacion</option>
+  <option defaultValue="Yearly Profit">Sobrepedido</option>
+  <option defaultValue="Crypto Investment">Inventario</option>
 </select>
               </fieldset>
               </div>
