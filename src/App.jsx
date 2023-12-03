@@ -12,6 +12,7 @@ import Signup from "./pages/Signup"
 import Pedidos from "./pages/Pedidos"
 import Carrito from "./pages/Carrito"
 import Productos from "./pages/Productos"
+import DetalleProducto from "./pages/DetalleProducto"
 
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
      <Route path="/carrito" element={<Carrito/>} />
       <Route path="/producto" element={<Producto/>} />
       <Route path="/materiaprima" element={<MateriaPrima/>} />
+      <Route path="/detalleproducto/:id" element={<DetalleProducto/>} />
       </Routes> 
     </BrowserRouter>
    {/* <TablePaginationComponet /> */}

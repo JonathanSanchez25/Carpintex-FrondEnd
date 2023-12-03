@@ -1,10 +1,16 @@
 import { useState,useEffect } from 'react';
 import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
+import './AnimacionHover.css'; 
+
 function Productos() {
  const [listFilter, setListFilter] = useState('');
  const [loadingStates, setLoadingStates] = useState({});
  const [data, setData] = useState([]);
 let canasta=[];
+
+//uso de Navigate
+const navigate = useNavigate();
 
  useEffect(() => {
     const fetchData = async () => {
@@ -53,6 +59,8 @@ let canasta=[];
 };
 
 
+
+
  return (
     <>
    <div className="swiper-container" id="top">
@@ -79,13 +87,14 @@ let canasta=[];
              {data
                .filter((producto) => producto.nombre.toLowerCase().includes(listFilter.toLowerCase()))
                .map((producto) => (
-                 <div key={producto.id} className="col-lg-3 col-md-5 col-sm-2 col-6 mb-4">
-                   <div className="card shadow-lg bg-white rounded">
+                 <div key={producto.id} className="col-lg-3 col-md-6  mb-4">
+                   <div className="card shadow-lg bg-white rounded cardHover">
                      <img
                        className="card-img-top"
                        src={producto.imagen}
                        alt="Card image cap"
                        style={{ height: '20rem' }}
+                       onClick={()=>navigate(`/detalleproducto/${producto.id}`)}
                      />
                      <div className="card-body">
                        <h5 className="card-title">{producto.nombre}</h5>
