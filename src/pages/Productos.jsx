@@ -1,10 +1,9 @@
 import { useState,useEffect } from 'react';
 import Footer from '../components/Footer';
+// import Navbar from '../components/Navbar';
 function Productos() {
  const [listFilter, setListFilter] = useState('');
- const [loadingStates, setLoadingStates] = useState({});
  const [data, setData] = useState([]);
-let canasta=[];
 
  useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +33,9 @@ let canasta=[];
   const existingItem = canasta.find((item) => item.id === id);
 
   if (existingItem) {
+    if(existingItem.cantidadAñadida < existingItem.stock){
     existingItem.cantidadAñadida = (existingItem.cantidadAñadida || 0) + 1;
+    }
   } else {
     canasta.push({
       id,
@@ -55,6 +56,8 @@ let canasta=[];
 
  return (
     <>
+        {/* <Navbar /> */}
+
    <div className="swiper-container" id="top">
      <div className="swiper-wrapper">
        <section className="body">

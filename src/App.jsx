@@ -12,6 +12,7 @@ import Signup from "./pages/Signup"
 import Pedidos from "./pages/Pedidos"
 import Carrito from "./pages/Carrito"
 import Productos from "./pages/Productos"
+import Pago from "./pages/Pago"
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
      <Route path="/productos" element={<Productos/>} />
      <Route path="/pedidos" element={<Pedidos/>} />
      <Route path="/carrito" element={<Carrito/>} />
+     <Route path="/pago" element={<Pago/>} />
       <Route path="/producto" element={<Producto/>} />
       <Route path="/materiaprima" element={<MateriaPrima/>} />
       </Routes> 

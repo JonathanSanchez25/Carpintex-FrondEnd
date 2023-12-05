@@ -3,45 +3,52 @@ import Footer from '../components/Footer';
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    // const [regUsuario] = useState({
-    //   rol: 'user',
-    //   // other fields
-    // });
+    const [regUsuario] = useState({
+      rol: 'user',
+      // other fields
+    });
 
    
     async function login(){
+      console.log(username); 
+      console.log(password);
+      const url = `https://localhost:7241/api/Usuario/login/${username}?password=${password}`;
       try {
-        const response = await fetch('https://localhost:7241/api/Usuario/login', {
-          method: 'POST',
+        const response = await fetch(url, {
+          method: 'GET',
+          mode: 'cors',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            username: username,
-            password: password,
-          }),
+
         });
-        console.log(response)
-        if (!response.ok) {
-          // Handle error responses, such as 401 Unauthorized
-          console.log(response)
-          console.error('Login failed:', response.status);
-          return;
+        console.log(response);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.rol_id === 1) {
+            console.log('Bienvenido Cliente');
+          } else if (data.rol_id === 2) {
+            console.log('Bienvenido Admin');
+          } else {
+            console.log('Rol no reconocido');
+          }
+        } else {
+          console.log('Error en el login');
         }
-        const result = await response.json();
-        console.log(result);
-        // Update state or perform further actions based on the result
-    
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.log('Error al conectarse con la API');
       }
-      // localStorage.setItem('username', username);
-      // localStorage.setItem('rol', regUsuario.rol);
+
+  //  localStorage.setItem('username', username);
+  //     localStorage.setItem('rol', regUsuario.rol);
       
-      // const storedRol = localStorage.getItem('rol');
-      // console.log(storedRol);
-      // if(storedRol==='user'){
-      //   window.location.href = '/inicio';
+  //     const storedRol = localStorage.getItem('rol');
+  //     console.log(storedRol);
+  //     if(storedRol==='user'){
+  //       window.location.href = '/inicio';
+  //     }
+
+   
 
       // }
     }

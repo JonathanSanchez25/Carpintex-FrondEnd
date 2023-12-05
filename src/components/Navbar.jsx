@@ -2,14 +2,10 @@ import { Link } from "react-router-dom"
 import { FaSignOutAlt,FaUser,FaShoppingCart  } from "react-icons/fa";
 
 function Navbar() {
-  // function goShopping() {
-  //   console.log('Implement your goShopping function logic here');
-  //   // Implement your goShopping function logic here
-  // }
 
     function exit(){
-        localStorage.clear();
-        window.location.href = '/login';
+      localStorage.removeItem('rol');
+      window.location.href = '/login';
     }
   return (
     <>
@@ -25,16 +21,17 @@ function Navbar() {
                     <li className="scroll-to-section"><Link className="nav-link" to="/inicio">Inicio</Link></li>
 <li className="scroll-to-section"><Link className="nav-link" to="/productos">Productos</Link></li>
 <li className="scroll-to-section"><Link className="nav-link" to="/conocenos">Conocenos</Link></li>
+<li className="scroll-to-section" style={{ cursor: 'pointer' }}>
+          <Link className="nav-link" to="/carrito">
+          <span id="txtPopupCantidad" className='text-white badge rounded-pill badge-notification bg-danger' >0</span>
+            <FaShoppingCart /></Link>
+      </li>
 
 {localStorage.getItem('rol') ? (
   <>
     <li className="scroll-to-section">
       <Link className="nav-link" to="/pedidos">Pedidos</Link>
     </li>
-    <li className="scroll-to-section" style={{ cursor: 'pointer' }}>
-          <Link className="nav-link" to="/carrito"><FaShoppingCart /></Link>
-      </li>
-
     <li className="scroll-to-section" style={{ cursor: 'pointer' }}>
       <Link className="nav-link" ><FaSignOutAlt onClick={exit} /></Link>
     </li>
