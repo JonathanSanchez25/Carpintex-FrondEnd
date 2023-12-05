@@ -1,8 +1,8 @@
 import  { useState, useEffect } from 'react';
+// import Navbar from '../components/Navbar';
 function Carrito() {
     const [data, setData] = useState([]);
     let [total, setTotal] = useState(0);
-
     useEffect(() => {
       // Get the data from localStorage
       const localStorageData = localStorage.getItem('data');
@@ -80,9 +80,16 @@ function eliminar(idProducto){
 
 }
 function comprar(){
+  console.log(localStorage.getItem('rol'));  
+  if(!localStorage.getItem('rol')){
+    window.location.href = '/login';
+  }else{
+    window.location.href = '/pago';
+  }
 }
   return (
 <div className="swiper-container" id="top">
+{/* <Navbar /> */}
   <div className="swiper-wrapper">
     <section className="body">
       <section className="container">
