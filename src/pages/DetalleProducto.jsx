@@ -2,6 +2,33 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import Footer from '../components/Footer';
 
+const agregarCanasta = (id, nombre, stock, total, largo, ancho, altura, imagen) => {
+  let canasta = JSON.parse(localStorage.getItem('data')) || [];
+
+  const existingItem = canasta.find((item) => item.id === id);
+
+  if (existingItem) {
+    if(existingItem.cantidadAñadida < existingItem.stock){
+    existingItem.cantidadAñadida = (existingItem.cantidadAñadida || 0) + 1;
+    }
+  } else {
+    canasta.push({
+      id,
+      nombre,
+      stock,
+      total,
+      largo,
+      ancho,
+      altura,
+      imagen,
+      cantidadAñadida: 1,
+    });
+  }
+
+  localStorage.setItem('data', JSON.stringify(canasta));
+};
+
+
 const DetalleProducto = () => {
     const { id } = useParams()
 
@@ -64,10 +91,18 @@ const DetalleProducto = () => {
               <p className="card-text">
                 <strong>Precio:</strong> ${dataProduct.total}
               </p>
+              <p className="card-text">
+              {dataProduct.stock > 0 ? (
+                         <strong className="text-primary">¡Solo quedan {dataProduct.stock}!</strong>
+                       ) : (
+                         <strong className="text-danger">¡Ya no hay stock, te avisaremos cuando vuelva!</strong>
+                       )}
+              </p> 
               {/* Puedes agregar más detalles según la estructura de tu objeto dataProduct */}
-              <button className="btn btn-primary mt-3">
-                Agregar al Carrito
-              </button>
+              {dataProduct.stock > 0 && (
+                         <button className="btn btn-primary mt-3" onClick={() => agregarCanasta(dataProduct.id, dataProduct.nombre, dataProduct.stock, dataProduct.total, dataProduct.largo, dataProduct.ancho, dataProduct.altura, dataProduct.imagen)}>Añadir al carrito</button>
+                       )}
+
             </div>
           </div>
         </div>

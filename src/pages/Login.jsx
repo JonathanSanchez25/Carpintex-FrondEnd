@@ -14,7 +14,7 @@ function Login() {
     const loginUrl = `https://localhost:7241/api/Usuario/login/${encodeURIComponent(username)}?password=${encodeURIComponent(password)}`;
   
     fetch(loginUrl, {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
