@@ -1,40 +1,42 @@
 import Footer from "../components/Footer";
+import { useEffect, useState } from "react";
 function Pedidos() {
-    const data = [
-        {
-          id: 1,
-          producto: {
-            nombre: 'Producto 1',
-            total: 10,
-            ancho: 5,
-            largo: 10,
-            altura: 2,
-          },
-          pedido: {
-            cantidad: 2,
-            totalprecio: 20,
-            estatusPedido: 1,
-            fechaRealizado: '2023-01-01',
-          },
-        },
-        {
-          id: 2,
-          producto: {
-            nombre: 'Producto 2',
-            total: 15,
-            ancho: 7,
-            largo: 12,
-            altura: 3,
-          },
-          pedido: {
-            cantidad: 1,
-            totalprecio: 15,
-            estatusPedido: 3,
-            fechaRealizado: '2023-01-02',
-          },
-        },
-        // Add more objects as needed
-      ];
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loginUrl = `https://localhost:7241/api/Pedido/${localStorage.getItem("user_id")}`;
+  
+    fetch(loginUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        if (!response.ok) {
+          console.error("pedidos failed:", response.status);
+          setError("Por favor, inténtalo de nuevo.");
+          throw new Error("Invalid pedidos");
+        }
+  
+        // Borra el error si ya se ha resuelto la petición
+        setError(null);
+  
+        return response.json();
+      })
+      .then((data) => {
+        setData(data);
+        console.log(data);
+        
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setError("El correo o contraseña son incorrectos.");
+      });
+  })
+
   return (
     <>
     <div className="swiper-container" id="top">
@@ -50,7 +52,7 @@ function Pedidos() {
                     <div className="row no-gutters">
                       <div className="col-md-2">
                         <img
-                          src="../../../assets/images/calculator-bg.jpg"
+                          src={producto.producto.imagen}
                           className="card-img"
                           alt="..."
                           style={{ height: '130px', width: '200px' }}
@@ -72,10 +74,21 @@ function Pedidos() {
                             </div>
                           </div>
 
-                          {/* <span *ngIf="producto.pedido.estatusPedido==1" class='text-white badge rounded-pill badge-notification bg-primary col-2' > Pedido procesado..</span>
-                          <span *ngIf="producto.pedido.estatusPedido==2" class='text-white badge rounded-pill badge-notification bg-warning col-2' > Pedido enviado</span>
-                          <span *ngIf="producto.pedido.estatusPedido==3" class='text-white badge rounded-pill badge-notification bg-success col-2' > Pedido entregado</span> */}
-
+                          {producto.pedido.estatusPedido === 1 && (
+      <span className='text-white badge rounded-pill badge-notification bg-primary col-2'>
+        Pedido procesado..
+      </span>
+    )}
+    {producto.pedido.estatusPedido === 2 && (
+      <span className='text-white badge rounded-pill badge-notification bg-warning col-2'>
+        Pedido enviado
+      </span>
+    )}
+    {producto.pedido.estatusPedido === 3 && (
+      <span className='text-white badge rounded-pill badge-notification bg-success col-2'>
+        Pedido entregado
+      </span>
+    )}
                            
 <div className="row ml-1" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
   <p className="card-text text-muted">
@@ -91,9 +104,9 @@ function Pedidos() {
       <small className="text-muted">Pedido efectuado el: {producto.pedido.fechaRealizado}</small>
     </p>
   </div>
-  <div className="col-6">
+  {/* <div className="col-6">
     <span className="text-white badge rounded-pill badge-notification bg-success col-6">Pagado</span>
-  </div>
+  </div> */}
 </div>
 
 
@@ -112,7 +125,7 @@ function Pedidos() {
                             <img src="../../../assets/images/not-found.png" className="card-img mb-4" alt="..." style={{ height: '100px', width: '100px' }} />
                             <h4 className="mb-2">¡Haz tu primera compra!</h4>
                             <p className="mb-2">Aquí podrás ver tus compras y hacer el seguimiento de tus envíos.</p>
-                            <a className="btn btn-primary" href="/inventario">Ver ofertas del día</a>
+                            <a className="btn btn-primary" href="/productos">Ver ofertas del día</a>
                           </div>
                         </div>
                       </div>

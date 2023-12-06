@@ -23,7 +23,7 @@ function Navbar() {
 <li className="scroll-to-section"><Link className="nav-link" to="/conocenos">Conocenos</Link></li>
 <li className="scroll-to-section" style={{ cursor: 'pointer' }}>
           <Link className="nav-link" to="/carrito">
-          <span id="txtPopupCantidad" className='text-white badge rounded-pill badge-notification bg-danger' >0</span>
+          <span id="txtPopupCantidad" className='text-white badge rounded-pill badge-notification bg-danger' > Compras</span>
             <FaShoppingCart /></Link>
       </li>
 

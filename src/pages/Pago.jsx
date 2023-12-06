@@ -1,9 +1,8 @@
 import { useState,useEffect } from 'react'
-
+import swal from 'sweetalert';
 
 
 function Pago() {
-  const [user] = useState({});
   const [nombre, setNombre] = useState('');
   const [direccion, setDireccion] = useState('');
   const [ciudad, setCiudad] = useState('');
@@ -16,16 +15,6 @@ function Pago() {
   const [anio, setAnio] = useState('');
 
   const [showBankingForm, setShowBankingForm] = useState(false);
-  // const [cantidadTotal] = useState(0);
-
-  // const pedido = {
-  //   cantidad: 0,
-  //   Totalprecio: 0,
-  //   estatusPedido: 0,
-  //   producto_id: 0,
-  //   user_id: 0,
-  //   fechaRealizado: new Date(),
-  // };
 
   const [data, setData] = useState([]);
   let [total, setTotal] = useState(0);
@@ -65,8 +54,8 @@ function Pago() {
           totalprecio: dataCarrito.total * dataCarrito.cantidadAñadida,
           estatusPedido: 1,
           producto_id: dataCarrito.id,
-          //cambiarlo por el del login
-          user_id: 1,
+          user_id: localStorage.getItem('user_id'),
+          fechaRealizado: new Date().toISOString(),
         };
         console.log(pedido);
   
@@ -79,18 +68,26 @@ function Pago() {
             body: JSON.stringify(pedido),
           });
           if (response.ok) {
-            console.log('Pedido agregado con éxito');
+            swal("Pedido agregado con éxito!");
+
+            setTimeout(() => {
+              // Redirige a la página de inicio
+              localStorage.removeItem('data');
+              window.location.href = "/pedidos";              // Actualiza el estado de autenticación en la aplicación
+            }, 1000); // Adjust the time delay as needed
+
+           
           } else {
-            console.error('Error al agregar pedido');
+            swal("Oops!", "Hubo un error!", "error");
           }
         } catch (error) {
+          swal("Oops!", "Hubo un error!", "error");
+
           console.error('Error al enviar formulario:', error);
         }
       });
   
-      alert('Compra realizada con éxito');
-      // localStorage.removeItem('data');
-      // history.push('/carrito');
+      // alert('Compra realizada con éxito');
     }
   };
   
