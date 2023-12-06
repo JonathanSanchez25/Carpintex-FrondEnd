@@ -1,11 +1,11 @@
 import { useState,useEffect } from 'react';
 import Footer from '../components/Footer';
+import SearchBox from '../components/SearchBox';
 import { useNavigate } from 'react-router-dom';
 import './AnimacionHover.css'; 
 
 function Productos() {
  const [listFilter, setListFilter] = useState('');
- const [loadingStates, setLoadingStates] = useState({});
  const [data, setData] = useState([]);
 let canasta=[];
 
@@ -40,7 +40,9 @@ const navigate = useNavigate();
   const existingItem = canasta.find((item) => item.id === id);
 
   if (existingItem) {
+    if(existingItem.cantidadAñadida < existingItem.stock){
     existingItem.cantidadAñadida = (existingItem.cantidadAñadida || 0) + 1;
+    }
   } else {
     canasta.push({
       id,
@@ -63,26 +65,18 @@ const navigate = useNavigate();
 
  return (
     <>
+        {/* <Navbar /> */}
+
    <div className="swiper-container" id="top">
      <div className="swiper-wrapper">
        <section className="body">
          <div className="container mt-4">
-           <div className="row justify-content-center mb-4">
-             <div className="col-lg-6 col-md-8 col-sm-10 col-12 mb-4">
-               <div className="input-group">
-                 <input
-                   value={listFilter}
-                   onChange={handleInputChange}
-                   className="form-control"
-                   name="filter"
-                   type="text"
-                 />
-                 <button className="btn btn-outline-secondary" type="button">
-                   <i className="fa fa-search" aria-hidden="true"></i>
-                 </button>
-               </div>
-             </div>
-           </div>
+         <SearchBox setListFilter={setListFilter} />
+         {listFilter.trim() !== '' && (
+                <div className="row mt-3">
+                  <h3>{data.filter((producto) => producto.nombre.toLowerCase().includes(listFilter.toLowerCase())).length} resultados de {listFilter}</h3>
+                </div>
+              )}
            <div className="row">
              {data
                .filter((producto) => producto.nombre.toLowerCase().includes(listFilter.toLowerCase()))

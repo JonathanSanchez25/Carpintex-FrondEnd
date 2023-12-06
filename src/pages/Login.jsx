@@ -3,48 +3,92 @@ import Footer from '../components/Footer';
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    // const [regUsuario] = useState({
-    //   rol: 'user',
-    //   // other fields
-    // });
+    const [regUsuario] = useState({
+      rol: 'user',
+      // other fields
+    });
+  const [error, setError] = useState(null);
 
    
-    async function login(){
-      try {
-        const response = await fetch('https://localhost:7241/api/Usuario/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username: username,
-            password: password,
-          }),
-        });
-        console.log(response)
-        if (!response.ok) {
-          // Handle error responses, such as 401 Unauthorized
-          console.log(response)
-          console.error('Login failed:', response.status);
-          return;
-        }
-        const result = await response.json();
-        console.log(result);
-        // Update state or perform further actions based on the result
-    
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-      // localStorage.setItem('username', username);
-      // localStorage.setItem('rol', regUsuario.rol);
-      
-      // const storedRol = localStorage.getItem('rol');
-      // console.log(storedRol);
-      // if(storedRol==='user'){
-      //   window.location.href = '/inicio';
+  //   async function login(){
+  //     console.log(username); 
+  //     console.log(password);
+  //     const url = `https://localhost:7241/api/Usuario/login/${username}?password=${password}`;
+  //     try {
+  //       const response = await fetch(url, {
+  //         method: 'GET',
+  //         mode: 'cors',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
 
-      // }
+  //       });
+  //       console.log(response);
+  //       if (response.ok) {
+  //         const data = await response.json();
+  //         if (data.rol_id === 1) {
+  //           console.log('Bienvenido Cliente');
+  //         } else if (data.rol_id === 2) {
+  //           console.log('Bienvenido Admin');
+  //         } else {
+  //           console.log('Rol no reconocido');
+  //         }
+  //       } else {
+  //         console.log('Error en el login');
+  //       }
+  //     } catch (error) {
+  //       console.log('Error al conectarse con la API');
+  //     }
+
+  // //  localStorage.setItem('username', username);
+  // //     localStorage.setItem('rol', regUsuario.rol);
+      
+  // //     const storedRol = localStorage.getItem('rol');
+  // //     console.log(storedRol);
+  // //     if(storedRol==='user'){
+  // //       window.location.href = '/inicio';
+  // //     }
+
+   
+
+  //     // }
+  //   }
+  async function login() {
+    try {
+      const response = await fetch(`https://localhost:7241/api/Usuario/login/${encodeURIComponent(username)}?password=${encodeURIComponent(password)}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      });
+      console.log(response);
+      if (!response.ok) {
+        console.error("Login failed:", response.status);
+        setError("Credenciales inválidas. Por favor, inténtalo de nuevo.");
+        return;
+      }
+
+      // Borra el error si ya se ha resuelto la petición
+      setError(null);
+
+      const userData = await response.json();
+
+      // Almacena el token de sesión y el rol en el localStorage
+      localStorage.setItem("token", userData.token);
+      localStorage.setItem("rol", userData.rol);
+
+      // Redirige a la página de inicio
+      window.location.href = "/inicio";
+      // Actualiza el estado de autenticación en la aplicación
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setError("Ocurrió un error durante el inicio de sesión. Por favor, inténtalo de nuevo más tarde.");
     }
+  }
 
   return (
     //login
