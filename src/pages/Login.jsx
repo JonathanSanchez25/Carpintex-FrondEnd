@@ -3,92 +3,51 @@ import Footer from '../components/Footer';
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [regUsuario] = useState({
-      rol: 'user',
-      // other fields
-    });
+    // const [regUsuario] = useState({
+    //   rol: 'user',
+    //   // other fields
+    // });
   const [error, setError] = useState(null);
 
-   
-  //   async function login(){
-  //     console.log(username); 
-  //     console.log(password);
-  //     const url = `https://localhost:7241/api/Usuario/login/${username}?password=${password}`;
-  //     try {
-  //       const response = await fetch(url, {
-  //         method: 'GET',
-  //         mode: 'cors',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-
-  //       });
-  //       console.log(response);
-  //       if (response.ok) {
-  //         const data = await response.json();
-  //         if (data.rol_id === 1) {
-  //           console.log('Bienvenido Cliente');
-  //         } else if (data.rol_id === 2) {
-  //           console.log('Bienvenido Admin');
-  //         } else {
-  //           console.log('Rol no reconocido');
-  //         }
-  //       } else {
-  //         console.log('Error en el login');
-  //       }
-  //     } catch (error) {
-  //       console.log('Error al conectarse con la API');
-  //     }
-
-  // //  localStorage.setItem('username', username);
-  // //     localStorage.setItem('rol', regUsuario.rol);
-      
-  // //     const storedRol = localStorage.getItem('rol');
-  // //     console.log(storedRol);
-  // //     if(storedRol==='user'){
-  // //       window.location.href = '/inicio';
-  // //     }
-
-   
-
-  //     // }
-  //   }
-  async function login() {
-    try {
-      const response = await fetch(`https://localhost:7241/api/Usuario/login/${encodeURIComponent(username)}?password=${encodeURIComponent(password)}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: username,
-          password: password,
-        }),
+    
+  function login() {
+    const loginUrl = `https://localhost:7241/api/Usuario/login/${encodeURIComponent(username)}?password=${encodeURIComponent(password)}`;
+  
+    fetch(loginUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        if (!response.ok) {
+          console.error("Login failed:", response.status);
+          setError("Credenciales inválidas. Por favor, inténtalo de nuevo.");
+          throw new Error("Invalid credentials");
+        }
+  
+        // Borra el error si ya se ha resuelto la petición
+        setError(null);
+  
+        return response.json();
+      })
+      .then((userData) => {
+        // Almacena el token de sesión y el rol en el localStorage
+        localStorage.setItem("user_id", userData.id);
+        localStorage.setItem("token", userData.token);
+        localStorage.setItem("rol", userData.rol);
+  
+        // Redirige a la página de inicio
+        window.location.href = "/inicio";
+        // Actualiza el estado de autenticación en la aplicación
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setError("El correo o contraseña son incorrectos.");
       });
-      console.log(response);
-      if (!response.ok) {
-        console.error("Login failed:", response.status);
-        setError("Credenciales inválidas. Por favor, inténtalo de nuevo.");
-        return;
-      }
-
-      // Borra el error si ya se ha resuelto la petición
-      setError(null);
-
-      const userData = await response.json();
-
-      // Almacena el token de sesión y el rol en el localStorage
-      localStorage.setItem("token", userData.token);
-      localStorage.setItem("rol", userData.rol);
-
-      // Redirige a la página de inicio
-      window.location.href = "/inicio";
-      // Actualiza el estado de autenticación en la aplicación
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setError("Ocurrió un error durante el inicio de sesión. Por favor, inténtalo de nuevo más tarde.");
-    }
   }
+  
 
   return (
     //login
@@ -119,6 +78,8 @@ function Login() {
                   placeholder="Contraseña"
                   required
                 />
+              {error && <p style={{ color: "red" }}>{error}</p>}
+
                    <button  className="submit">
                   Ingresar
                 </button>
