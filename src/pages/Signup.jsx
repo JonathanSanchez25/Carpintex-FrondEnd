@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
 
 function Signup() {
   const [regUsuario, setRegUsuario] = useState({
@@ -51,10 +50,11 @@ function Signup() {
 
       // Redirige a la página de inicio de sesión
       navigate("/login");
-      
     } catch (error) {
       console.error("Error posting data:", error);
-      setError("Ocurrió un error durante el registro. Por favor, inténtalo de nuevo más tarde.");
+      setError(
+        "Ocurrió un error durante el registro. Por favor, inténtalo de nuevo más tarde."
+      );
     }
   }
 
@@ -204,7 +204,6 @@ function Signup() {
           </section>
         </div>
       </div>
-      <Footer />
     </>
   );
 }
