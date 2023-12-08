@@ -54,7 +54,7 @@ function Login() {
       <div className="swiper-container" id="top">
         <div className="swiper-wrapper">
           <section className="login">
-            <div className="login_box">
+            <div className="login_box container">
               <div className="left">
                 <div className="contact">
                   <form
@@ -81,7 +81,7 @@ function Login() {
                     />
                     {error && <p style={{ color: "red" }}>{error}</p>}
 
-                    <button className="submit">Ingresar</button>
+                    <button className="submit mb-5">Ingresar</button>
                   </form>
                 </div>
                 <div className="row">
