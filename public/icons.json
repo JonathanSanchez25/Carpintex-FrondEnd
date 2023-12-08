@@ -1,22 +1,4 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { VitePWA } from 'vite-plugin-pwa'
-
-
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react(),VitePWA({ 
-    registerType: 'autoUpdate',
-  devOptions:{
-    enabled: true
-  },
-injectRegister: 'auto',
-includeAssets: ['public/android', 'public/ios', 'public/windows11'],
-manifest: {
-  name: 'PWA CARPINEX',
-  short_name: 'CARPINEX',
-  description: 'PWA CARPINEX',
-  theme_color: '#ffffff',
+{
   "icons": [
     {
       "src": "windows11/SmallTile.scale-100.png",
@@ -468,8 +450,3 @@ manifest: {
     }
   ]
 }
-
-
-})
-]
-})
