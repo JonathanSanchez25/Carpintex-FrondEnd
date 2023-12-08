@@ -5,6 +5,31 @@ function Inicio() {
     <>
       <div className="swiper-container" id="top">
         <div className="swiper-wrapper">
+        <div className="body">
+         <div > 
+          <div className="swiper-slide"  style={{backgroundImage: "url(assets/images/slide-01.jpg)", backgroundSize: "cover", backgroundPosition: "center", height: "70vh"}}>
+            
+          <div className="container">
+                <div className="row">
+                  <div className="col-lg-8 d-flex">
+                    <div className="header-text align-items-center mt-5">
+                      <h2 style={{ color: "orange", backgroundColor: "rgba(0,0,0,0.2)" }}>
+                        El arte <em>de</em> crear con <em>maderas</em>
+                      </h2>
+                      <div className="div-dec"></div>
+                      <h4 style={{ color: "white" }}>
+                        Todo en muebles: Armarios,mesas para cocina,bases para
+                        cama, sillas. Maderas selectas de Pino, Caoba, Encino,
+                        Maple, Cedro
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        {
+          /*
           <div className="swiper-slide">
             <div
               className="slide-inner"
@@ -28,8 +53,10 @@ function Inicio() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          
+      </div>
+          */
+        }
       </div>
 
       <section className="services" id="services" style={{ marginTop: "20px", marginBottom: "20px" }}>
@@ -218,6 +245,9 @@ function Inicio() {
           </div>
         </div>
       </section>
+      </div>
+      </div>
+      </div>
     </>
   );
 }

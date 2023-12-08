@@ -3,7 +3,7 @@ function Conocenos() {
     <>
       <div className="swiper-container" id="top">
         <div className="swiper-wrapper">
-          <section className="body">
+          <div className="body">
             <section className="quienes-somos bg-dark">
               <div className="container text-white mt-5">
                 <div className="row">
@@ -243,7 +243,7 @@ function Conocenos() {
                 </div>
               </div>
             </div>
-          </section>
+          </div>
         </div>
       </div>
     </>

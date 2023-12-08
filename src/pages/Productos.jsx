@@ -90,7 +90,7 @@ function Productos() {
     <>
       <div className="swiper-container" id="top">
         <div className="swiper-wrapper">
-          <section className="body">
+          <div className="body">
             <div className="container mt-4">
               <SearchBox setListFilter={setListFilter} />
               {listFilter.trim() !== "" && (
@@ -192,7 +192,7 @@ function Productos() {
                 </button>
               </div>
             </div>
-          </section>
+          </div>
         </div>
       </div>
     </>

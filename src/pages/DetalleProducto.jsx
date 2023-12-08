@@ -76,7 +76,7 @@ const DetalleProducto = () => {
     <>
       <div className="swiper-container" id="top">
         <div className="swiper-wrapper">
-          <section className="body">
+          <div className="body">
             <div className="container mt-5">
               <div className="row">
                 <div className="col-md-6">
@@ -146,7 +146,7 @@ const DetalleProducto = () => {
                 </div>
               </div>
             </div>
-          </section>
+          </div>
         </div>
       </div>
     </>
