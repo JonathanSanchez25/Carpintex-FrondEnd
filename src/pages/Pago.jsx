@@ -39,7 +39,7 @@ function Pago() {
 
   const comprar = async () => {
     if (!nombreTitular || !numeroCuenta || !ccv || !mes || !anio) {
-      alert("¡Complete todos los campos!");
+      swal("Oops!", "complete todos los campos!", "error");
     } else {
       data.forEach(async (dataCarrito) => {
         const pedido = {
@@ -162,11 +162,19 @@ function Pago() {
                         </form>
                       </div>
                       <button
-                        className="btn btn-primary mt-3"
-                        onClick={() => setShowBankingForm(true)}
-                      >
-                        Siguiente
-                      </button>
+  className="btn btn-primary mt-3"
+  onClick={() => {
+    console.log(nombre);
+    if (nombre!="" || direccion!="" || ciudad != "" || codigoPostal!="" || telefono!="") {
+      setShowBankingForm(true);
+    }else{
+      swal("Oops!", "complete todos los campos!", "error");
+    }
+  }}
+>
+  Siguiente
+</button>
+
                     </div>
                   </div>
                 ) : (
@@ -200,7 +208,7 @@ function Pago() {
                             />
                           </div>
                           <div className="form-group row mt-2">
-                            <div className="col-6">
+                            <div className="col-3">
                               <input
                                 type="text"
                                 className="form-control"
@@ -212,7 +220,7 @@ function Pago() {
                                 placeholder="Ingrese el número de cuenta"
                               />
                             </div>
-                            <div className="col-2">
+                            <div className="col-3">
                               <input
                                 type="text"
                                 className="form-control"
@@ -222,7 +230,7 @@ function Pago() {
                                 placeholder="CCV"
                               />
                             </div>
-                            <div className="col-2">
+                            <div className="col-3">
                               <input
                                 type="text"
                                 className="form-control"
@@ -232,7 +240,7 @@ function Pago() {
                                 placeholder="mes"
                               />
                             </div>
-                            <div className="col-2">
+                            <div className="col-3">
                               <input
                                 type="text"
                                 className="form-control"
@@ -275,19 +283,19 @@ function Pago() {
                     <div className="card-header">
                       <h5 className="card-title">Resumen de compra</h5>
                     </div>
-                    <div className="card-body">
-                      <div className="d-flex align-items-center mb-4">
-                        <p style={{ marginRight: "6em" }}>
+                    <div className="card-body align-items-center">
+                      <div className="row   mb-2">
+                        <p style={{ marginRight: "3em" }}>
                           Productos ({data.length})
                         </p>
                         <p>${total}</p>
                       </div>
-                      <div className="d-flex align-items-center mb-4">
-                        <p style={{ marginRight: "10em" }}>Envio</p>
+                      <div className="row  mb-2">
+                        <p style={{ marginRight: "3em" }}>Envio</p>
                         <p className="text-success">Gratis</p>
                       </div>
-                      <div className="d-flex align-items-center mb-4">
-                        <p style={{ marginRight: "10em", fontWeight: "bold" }}>
+                      <div className="row s mb-2">
+                        <p style={{ marginRight: "3em", fontWeight: "bold" }}>
                           Total
                         </p>
                         <p className="text-success">${total}</p>

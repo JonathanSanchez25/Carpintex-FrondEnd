@@ -14,7 +14,7 @@ function Login() {
     )}?password=${encodeURIComponent(password)}`;
 
     fetch(loginUrl, {
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
